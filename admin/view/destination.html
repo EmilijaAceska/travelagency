@@ -1,0 +1,76 @@
+<div class="container-fluid table-responsive-sm">
+  <h3 class="text-light display-4">DESTINATION</h3>
+  <table class="table table-hover responsive-sm table-bordered table-light text-center">
+    <thead class="thead-active">
+      <tr>
+        <th>ID</th>
+        <th>Destination Name</th>
+        <th>Destination Description</th>
+        <th>IMG</th>
+        <th>Subcategory title</th>
+        <th>Category title</th>
+        <th>EDIT</th>
+        <th>DELETE</th>
+      </tr>
+      <tr>
+        <th>SEARCH IN DESTINATIONS:</th>
+        <th><input type="text" placeholder="Search by Name" name="searchByName" id="searchByName" ng-model="searchByName" /></th>
+        <th><input type="text" placeholder="Search by subcategory" name="searchBySubcategory" id="searchBySubcategory"
+            ng-model="searchBySubcategory" /></th>
+        <th><input type="text" placeholder="Search by category" name="searchByCategory" id="searchByCategory"
+                ng-model="searchBySubcategory" /></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="destinations in destination | filter:{destination_name:searchByName,subcategory_title:searchBySubcategory,category_title:searchByCategory}">
+        <!-- <td>{{$index}}</td> -->
+        <td>{{destinations.destination_id}}</td>
+        <td>{{destinations.destination_name}}</td>
+        <td>{{destinations.destination_desc}}</td>
+        <td><img src="uploads/{{destinations.destination_img}}" alt="{{destinations.destination_img}}" width="100" height="100" /></td>
+        <td>{{destinations.subcategory_title}}</td>
+        <td>{{destinations.category_title}}</td>
+        <td><a href="#!destination_form/{{$index}}"><i class="fa fa-edit"></i></a></td>
+        <td><button type="button" title="DELETE" class="btn btn-danger" data-toggle="modal" data-target="#myModal"
+            ng-click="function_getId($index);function_deleteRowDestination(destinations.destination_id)">
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header bg-light">
+        <h4 class="modal-title">DELETE DESTINATION</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="alert alert-info" ng-show="infoAlert">
+          THIS RECORD CAN NOT BE DELETED!
+        </div>
+        <div class="alert alert-danger" ng-show="deleteAlert">
+          ARE YOU SURE YOU WANT TO DELETE DESTINATION {{destination[getId].destination_id}}..?
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button ng-show="!infoAlert" type="button" class="btn btn-danger"
+          ng-click="function_deleteRow('destination',destination[getId].destination_id)">DELETE</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+      </div>
+    </div>
+  </div>
+</div>

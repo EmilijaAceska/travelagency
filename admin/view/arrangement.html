@@ -1,0 +1,89 @@
+<div class="container-fluid table-responsive">
+  <h3 class="text-light display-4">ARRANGEMENTS</h3>
+  <table class="table table-hover responsive-sm table-bordered table-light text-center">
+    <thead class="thead-active">
+      <tr>
+        <th>ID</th>
+        <th>Arrangement Title</th>
+        <th>Arrangement Description</th>
+        <th>Accommodation type</th>
+        <th>Room type</th>
+        <th>Check in</th>
+        <th>Check out</th>
+        <th>Price</th>
+        <th>Transport type</th>
+        <th>IMG</th>
+        <th>DESTINATION</th>
+        <th>EDIT</th>
+        <th>DELETE</th>
+      </tr>
+      <tr>
+        <th>SEARCH BY:</th>
+        <th><input type="text" placeholder="title" name="searchByTitle" id="searchByTitle" ng-model="searchByTitle" size="1" /></th>
+        <th></th>
+        <th><input type="text" placeholder="accommodation" name="searchByAccType" id="searchByAccType" ng-model="searchByAccType" size="12" /></th>
+        <th><input type="text" placeholder="room" name="searchByRType" id="searchByRType" ng-model="searchByRType" size="1" /></th>
+        <th><input type="text" placeholder="check in date" name="searchByInDate" id="searchByInDate" ng-model="searchByInDate" size="9" /></th>
+        <th><input type="text" placeholder="check out date" name="searchByOutDate" id="searchByOutDate" ng-model="searchByOutDate" size="10" /></th>
+        <th><input type="text" placeholder="price" name="searchByPrice" id="searchByPrice" ng-model="searchByPrice" size="1"/></th>
+        <th><input type="text" placeholder="transport" name="searchByTransport" id="searchByTransport" ng-model="searchByTransport" size="5" /></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="arrangements in arrangement| filter:{arrangement_title:searchByTitle,accommodation_type:searchByAccType,room_type:searchByRType,check_in:searchByInDate,
+        check_out:searchByOutDate,price:searchByPrice,transport_type:searchByTransport}">
+        <!-- <td>{{$index}}</td> -->
+        <td>{{arrangements.arrangement_id}}</td>
+        <td>{{arrangements.arrangement_title}}</td>
+        <td>{{arrangements.arrangement_description}}</td>
+        <td>{{arrangements.accommodation_type}}</td>
+        <td>{{arrangements.room_type}}</td>
+        <td>{{arrangements.check_in}}</td>
+        <td>{{arrangements.check_out}}</td>
+        <td>{{arrangements.price}}</td>
+        <td>{{arrangements.transport_type}}</td>
+        <td>{{arrangements.accommodation_img}}</td>
+        <td>{{arrangements.destination_name}}</td>
+        <td><a href="#!arrangement_form/{{$index}}"><i class="fa fa-edit"></i></a></td>
+        <td><button type="button" title="DELETE" class="btn btn-danger" ng-click="function_getId($index)" data-toggle="modal" data-target="#myModal">
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header bg-light">
+        <h4 class="modal-title">DELETE ARRANGEMENT</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="alert alert-info" ng-show="infoAlert">
+          THIS RECORD CAN NOT BE DELETED!
+        </div>
+        <div class="alert alert-danger" ng-show="deleteAlert">
+          ARE YOU SURE YOU WANT TO DELETE ARRANGEMENT {{arrangement[getId].arrangement_title}}..?
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button ng-show="!infoAlert" type="button" class="btn btn-danger"
+          ng-click="function_deleteRow('arrangement',arrangement[getId].arrangement_id)">DELETE</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+      </div>
+    </div>
+  </div>
+</div>

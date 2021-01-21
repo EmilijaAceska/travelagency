@@ -1,0 +1,61 @@
+<div class="container">
+  <h4 class="text-light display-4">NEW GUIDE</h4>
+  <div class="alert alert-success" ng-show="successAlert">
+    You inserted new guide successfuly!
+  </div>
+  <div class="alert alert-success" ng-show="successfullAlert">
+    You updated this quide successfuly!
+  </div>
+  <div class="alert alert-danger" ng-show="dangerAlert">
+    Please fill in the form correctly!
+  </div>
+  <div class="alert alert-info" ng-show="infoAlert">
+    The record already exists!
+  </div>
+  <div class="container">
+
+    <form name="myForm" class="text-light form-myForm">
+
+      <div class="form-group">
+        <label for="first_name">First Name:</label>
+        <div ng-show="myForm.first_name.$invalid"></div>
+        <input type="text" class="form-control" placeholder="first name" name="first_name" id="first_name" ng-model="guides[checkUrl].first_name" required>
+        <input type="hidden" class="form-control" name="guide_id" id="guide_id" ng-model="guides[checkUrl].guide_id" />
+      </div>
+
+      <div class="form-group">
+        <label for="last_name">Last Name:</label>
+        <div ng-show="myForm.last_name.$invalid"></div>
+        <input type="text" class="form-control" placeholder="last name" name="last_name" id="last_name" ng-model="guides[checkUrl].last_name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="spoken_language">Spoken Language:</label>
+        <div ng-show="myForm.spoken_language.$invalid"></div>
+        <input type="text" class="form-control" placeholder="spoken language" name="spoken_language" id="spoken_language"
+          ng-model="guides[checkUrl].spoken_language" required>
+      </div>
+
+      <div class="form-group">
+        <label for="guide_img">Upload image:</label>
+        <div ng-show="myForm.guide_img.$invalid"></div>
+        <input type="text" class="form-control" placeholder="guide img" name="guide_img" id="guide_img" ng-model="guides[checkUrl].guide_img" required>
+      </div>
+
+      <div class="form-group">
+        <button ng-show="checkUrl===undefined" class="btn btn-secondary" 
+                ng-click="(myForm.first_name.$valid && myForm.last_name.$valid && myForm.spoken_language.$valid && myForm.guide_img.$valid) 
+                ? function_guides_form(guides[checkUrl].first_name,guides[checkUrl].last_name,guides[checkUrl].spoken_language,
+                guides[checkUrl].guide_img,guides[checkUrl].guide_id, 'insert') : function_error()">SAVE</button>
+      </div>
+      <div class="form-group">
+        <button ng-show="checkUrl!==undefined" class="btn btn-secondary" 
+                ng-click="(myForm.first_name.$valid && myForm.last_name.$valid && myForm.spoken_language.$valid && myForm.guide_img.$valid) 
+                ? function_guides_form(guides[checkUrl].first_name,guides[checkUrl].last_name,guides[checkUrl].spoken_language,
+                guides[checkUrl].guide_img,guides[checkUrl].guide_id, 'update') : function_error()">EDIT</button>
+      </div>
+    </form>
+
+  </div>
+
+</div>

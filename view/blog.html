@@ -1,0 +1,25 @@
+<main class="container" style="background-color:#E5BE8E;opacity:0.9;">
+  <div class="p-4 p-md-5 mb-4 text-white text-center">
+    <div class="col-md-12 px-0">
+      <h1 class="display-4 text-muted">Welcome to our blog section!</h1>
+      <p class="lead my-3">Here you can read some interesting stories about traveling.</p>
+    </div>
+  </div>
+  
+
+   <div class="row mb-2">
+    <div class="col-10 mx-auto" ng-repeat="post in blog_post">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column">
+          <h3 class="mb-0 text-muted">{{post.post_title}}</h3>
+          <p class="card-text mb-auto">{{post.post_text}}</p>
+          <a href="#!single_blog/{{$index}}" class="stretched-link text-muted">Continue reading</a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <img class="my-2 rounded-circle text" src="uploads/{{post.post_img}}" alt="{{post.post_img}}" width="200" height="200">
+        </div> 
+      </div>
+    </div>
+  </div>
+  <hr class="featurette-divider">
+</main>

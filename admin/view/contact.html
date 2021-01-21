@@ -1,0 +1,72 @@
+<div class="container-fluid table-responsive-sm">
+  <h3 class="text-light display-4">MESSAGES</h3>
+  <table class="table table-hover responsive-sm table-bordered table-light text-center">
+    <thead class="thead-active">
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Message</th>
+        <th>DELETE</th>
+      </tr>
+      <tr>
+        <th>SEARCH IN MESSAGES:</th>
+        <th><input type="text" placeholder="Search by First Name" name="searchByFName" id="searchByFName"
+            ng-model="searchByFName" size="6" /></th>
+        <th><input type="text" placeholder="Search by Last Name" name="searchByLName" id="searchByLName"
+            ng-model="searchByLName" size="6" /></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="messages in contact | filter:{first_name:searchByFName,last_name:searchByLName}">
+        <!-- <td>{{$index}}</td> -->
+        <td>{{messages.contact_id}}</td>
+        <td>{{messages.first_name}}</td>
+        <td>{{messages.last_name}}</td>
+        <td>{{messages.email}}</td>
+        <td>{{messages.phone}}</td>
+        <td>{{messages.message}}</td>
+        <td><button type="button" title="DELETE" class="btn btn-danger" ng-click="function_getId($index)" data-toggle="modal" data-target="#myModal">
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header bg-light">
+        <h4 class="modal-title">DELETE MESSAGE</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="alert alert-info" ng-show="infoAlert">
+          THIS RECORD CAN NOT BE DELETED!
+        </div>
+        <div class="alert alert-danger" ng-show="deleteAlert">
+          ARE YOU SURE YOU WANT TO DELETE MESSAGE {{contact[getId].contact_id}}..?
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button ng-show="!infoAlert" type="button" class="btn btn-danger"
+          ng-click="function_deleteRow('contact',contact[getId].contact_id)">DELETE</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="container">
+  <h4 class="text-light display-4">NEW POST</h4>
+  <div class="alert alert-success" ng-show="successAlert">
+    You created new post successfuly!
+  </div>
+  <div class="alert alert-success" ng-show="successfullAlert">
+    You updated this post successfuly!
+  </div>
+  <div class="alert alert-danger" ng-show="dangerAlert">
+    Please fill in the form correctly!
+  </div>
+  <div class="alert alert-info" ng-show="infoAlert">
+    The record already exists!
+  </div>
+  <div class="container">
+
+    <form name="myForm" class="text-light form-myForm">
+
+      <div class="form-group">
+        <label for="post_title">First Name:</label>
+        <div ng-show="myForm.post_title.$invalid"></div>
+        <input type="text" class="form-control" placeholder="post title" name="post_title" id="post_title" ng-model="blog_post[checkUrl].post_title" required>
+        <input type="hidden" class="form-control" name="post_id" id="post_id" ng-model="blog_post[checkUrl].post_id" />
+      </div>
+
+      <div class="form-group">
+        <label for="post_text">Your message:</label>
+        <div ng-show="myForm.post_text.$invalid"></div>
+        <textarea class="form-control" rows="5" name="post_text" id="post_text" ng-model="blog_post[checkUrl].post_text" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="post_img">Spoken Language:</label>
+        <div ng-show="myForm.post_img.$invalid"></div>
+        <input type="text" class="form-control" placeholder="post_img" name="post_img" id="post_img"
+          ng-model="blog_post[checkUrl].post_img" required>
+      </div>
+
+      <div class="form-group">
+        <button ng-show="checkUrl===undefined" class="btn btn-secondary" 
+                ng-click="(myForm.post_title.$valid && myForm.post_text.$valid && myForm.post_img.$valid) 
+                ? function_blog_form(blog_post[checkUrl].post_title,blog_post[checkUrl].post_text,
+                blog_post[checkUrl].post_img,blog_post[checkUrl].post_id, 'insert') : function_error()">SAVE</button>
+      </div>
+      <div class="form-group">
+        <button ng-show="checkUrl!==undefined" class="btn btn-secondary" 
+                ng-click="(myForm.post_title.$valid && myForm.post_text.$valid && myForm.post_img.$valid) 
+                ? function_blog_form(blog_post[checkUrl].post_title,blog_post[checkUrl].post_text,
+                blog_post[checkUrl].post_img,blog_post[checkUrl].post_id, 'update') : function_error()">EDIT</button>
+      </div>
+    </form>
+
+  </div>
+
+</div>

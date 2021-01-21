@@ -1,0 +1,133 @@
+<div class="container">
+  <h4 class="text-light display-4">NEW ARRANGEMENT</h4>
+  <div class="alert alert-success" ng-show="successAlert">
+    You entered the arrangement successfuly!
+  </div>
+  <div class="alert alert-success" ng-show="successfullAlert">
+    You updated this arrangement successfuly!
+  </div>
+  <div class="alert alert-danger" ng-show="dangerAlert">
+    Please fill in the form correctly!
+  </div>
+  <div class="alert alert-info" ng-show="infoAlert">
+    The record already exists!
+  </div>
+  <div class="container">
+
+    <form name="myForm" class="text-light form-myForm">
+      <div class="form-group">
+        <label for="arrangement_title">Arrangement Title:</label>
+        <div ng-show="myForm.arrangement_title.$invalid"></div>
+        <input type="text" class="form-control" placeholder="arrangement title" name="arrangement_title"
+          id="arrangement_title" ng-model="arrangement[checkUrl].arrangement_title" required>
+        <input type="hidden" class="form-control" name="arrangement_id" id="arrangement_id"
+          ng-model="arrangement[checkUrl].arrangement_id" />
+      </div>
+
+      <div class="form-group">
+        <label for="arrangement_description">Arrangement Description:</label>
+        <div ng-show="myForm.arrangement_description.$invalid"></div>
+        <input type="text" class="form-control" placeholder="description" name="arrangement_description"
+          id="arrangement_description" ng-model="arrangement[checkUrl].arrangement_description" required>
+      </div>
+
+      <div class="form-group">
+        <label for="accommodation_type">Accommodation Type:</label>
+        <div ng-show="myForm.accommodation_type.$invalid"></div>
+        <input type="text" class="form-control" placeholder="accommodation type" name="accommodation_type"
+          id="accommodation_type" ng-model="arrangement[checkUrl].accommodation_type" required>
+      </div>
+
+      <div class="form-group">
+        <label for="room_type">Room Type:</label>
+        <div ng-show="myForm.room_type.$invalid"></div>
+        <input type="text" class="form-control" placeholder="room type" name="room_type" id="room_type"
+          ng-model="arrangement[checkUrl].room_type" required>
+      </div>
+
+      <div class="form-group">
+        <label for="check_in">Check-In Date:</label>
+        <div ng-show="myForm.check_in.$invalid"></div>
+        <input type="text" class="form-control" placeholder="insert check in date" name="check_in" id="check_in"
+          ng-model="arrangement[checkUrl].check_in" required>
+      </div>
+
+      <div class="form-group">
+        <label for="check_out">Check-Out Date:</label>
+        <div ng-show="myForm.check_in.$invalid"></div>
+        <input type="text" class="form-control" placeholder="insert check out date" name="check_out" id="check_out"
+          ng-model="arrangement[checkUrl].check_out" required>
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <div ng-show="myForm.price.$invalid"></div>
+        <input type="text" class="form-control" placeholder="insert price" name="price" id="price"
+          ng-model="arrangement[checkUrl].price" required>
+      </div>
+
+      <div class="form-group">
+        <label for="transport_type">Transport Type:</label>
+        <div ng-show="myForm.transport_type.$invalid"></div>
+        <input type="text" class="form-control" placeholder="insert transport type" name="transport_type"
+          id="transport_type" ng-model="arrangement[checkUrl].transport_type" required>
+      </div>
+
+      <div class="form-group">
+        <label for="accommodation_img">Upload Image:</label>
+        <div ng-show="myForm.transport_type.$invalid"></div>
+        <input type="text" class="form-control" placeholder="insert image" name="accommodation_img"
+          id="accommodation_img" ng-model="arrangement[checkUrl].accommodation_img" required>
+      </div>
+
+      <div class="form-group">
+        <label for="destination_id">Select Destination:</label>
+        <div ng-show="myForm.destination_id.$invalid"></div>
+        <select class="form-control" name="destination_id" id="destination_id"
+          ng-model="arrangement[checkUrl].destination_id" required>
+          <option value=""></option>
+          <option ng-repeat="destination in destination" value="{{destination.destination_id}}">
+            {{destination.destination_name}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="guide_id">Select Guide:</label>
+        <div ng-show="myForm.guide_id.$invalid"></div>
+        <select class="form-control" name="guide_id" id="guide_id" ng-model="arrangement[checkUrl].guide_id"
+          required>
+          <option value=""></option>
+          <option ng-repeat="guide in guides" value="{{guide.guide_id}}">
+            {{guide.first_name}} {{guide.last_name}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <button ng-show="checkUrl===undefined" class="btn btn-secondary"
+          ng-click="(myForm.arrangement_description.$valid && myForm.accommodation_type.$valid && myForm.room_type.$valid 
+          && myForm.check_in.$valid && myForm.check_out.$valid && myForm.price.$valid && myForm.transport_type.$valid
+          && myForm.accommodation_img.$valid && myForm.destination_id.$valid && myForm.guide_id.$valid && myForm.arrangement_title.$valid) 
+          ? function_arrangement_form(arrangement[checkUrl].arrangement_title,arrangement[checkUrl].arrangement_description,
+          arrangement[checkUrl].accommodation_type,arrangement[checkUrl].room_type,arrangement[checkUrl].check_in,
+          arrangement[checkUrl].check_out,arrangement[checkUrl].price,arrangement[checkUrl].transport_type,
+          arrangement[checkUrl].accommodation_img,arrangement[checkUrl].destination_id,arrangement[checkUrl].guide_id,
+          arrangement[checkUrl].arrangement_id, 'insert') : function_error()">SAVE</button>
+      </div>
+
+      <div class="form-group">
+        <button ng-show="checkUrl!==undefined" class="btn btn-secondary"
+          ng-click="(myForm.arrangement_description.$valid && myForm.accommodation_type.$valid && myForm.room_type.$valid 
+                && myForm.check_in.$valid && myForm.check_out.$valid && myForm.price.$valid && myForm.transport_type.$valid
+                && myForm.accommodation_img.$valid && myForm.destination_id.$valid && myForm.guide_id.$valid && myForm.arrangement_title.$valid) 
+                ? function_arrangement_form(arrangement[checkUrl].arrangement_title,arrangement[checkUrl].arrangement_description,
+                arrangement[checkUrl].accommodation_type,arrangement[checkUrl].room_type,arrangement[checkUrl].check_in,
+                arrangement[checkUrl].check_out,arrangement[checkUrl].price,arrangement[checkUrl].transport_type,
+                arrangement[checkUrl].accommodation_img,arrangement[checkUrl].destination_id,arrangement[checkUrl].guide_id,
+                arrangement[checkUrl].arrangement_id, 'update') : function_error()">UPDATE</button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <!--Bootstrap 4 Framework-->
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/popper.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <!--AngularJS Framework-->
+    <script src="../assets/js/angular.min.js"></script>
+    <script src="../assets/js/angular-route.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/routes.js"></script>
+    <!--Icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  </head>
+<body ng-app="myApp" ng-controller="myCtrl">
+  <header class="sticky-top">
+    <nav class="navbar navbar-expand-sm justify-content-center" style="background-color:#E5BE8E;">
+      <!-- Brand -->
+      <a class="navbar-brand text-light" href="#">TRAVEL AGENCY</a>
+      <!-- Links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-muted" href="#!/category">CATEGORY</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-muted" href="#!/subcategory">SUBCATEGORY</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-muted" href="#!/arrangement">ARRANGEMENTS</a>
+        </li>
+        <li class="nav-item text-nowrap">
+          <a class="nav-link text-muted" href="#!/destination">DESTINATION</a>
+        </li>
+        <li class="nav-item text-nowrap">
+          <a class="nav-link text-muted" href="#!/guides">GUIDES</a>
+        </li>
+        <li class="nav-item text-nowrap">
+          <a class="nav-link text-muted" href="#!/blog">BLOG</a>
+        </li>
+        <li class="nav-item text-nowrap">
+          <a class="nav-link text-muted" href="#!/contact">MESSAGES</a>
+        </li>
+    </nav>
+    <nav class="navbar navbar-expand-sm justify-content-center" style="background-color:#E5BE8E;">
+      <!-- Links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-light">ADD NEW --></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-muted" href="#!/category_form">New category</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-muted" href="#!/subcategory_form">New subcategory</a>
+        </li>
+        <li class="nav-item text-nowrap">
+          <a class="nav-link text-muted" href="#!/arrangement_form">New arrangement</a>
+        </li>
+        <li class="nav-item text-nowrap">
+          <a class="nav-link text-muted" href="#!/destination_form">New destination</a>
+        </li>
+        <li class="nav-item text-nowrap">
+          <a class="nav-link text-muted" href="#!/guides_form">New Guide</a>
+        </li>
+        <li class="nav-item text-nowrap">
+          <a class="nav-link text-muted" href="#!/blog_form">New Post</a>
+        </li>
+    </nav>
+  </header>
+  <main>
+    <ng-view></ng-view>
+  </main>
+  <footer class="footer">
+    <p class="text-center text-light">|Template built by @Emilija Aceska |</p>
+  </footer>
+</body>
+</html>

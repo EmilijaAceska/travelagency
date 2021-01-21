@@ -1,0 +1,85 @@
+<div class="container">
+  <h4 class="text-light display-4">DESTINATION</h4>
+  <div class="alert alert-success" ng-show="successAlert">
+    You entered the destination successfuly!
+  </div>
+  <div class="alert alert-success" ng-show="successfullAlert">
+    You updated this destination successfuly!
+  </div>
+  <div class="alert alert-danger" ng-show="dangerAlert">
+    Please fill in the form correctly!
+  </div>
+  <div class="alert alert-info" ng-show="infoAlert">
+    The record already exists!
+  </div>
+  <div class="container">
+
+    <form name="myForm" class="text-light form-myForm">
+
+      <div class="form-group">
+        <label for="destination_name">Destination Name:</label>
+        <div ng-show="myForm.destination_name.$invalid"></div>
+        <span ng-show="checkUrl!==undefined">{{destination[checkUrl].destination_name}}</span>
+        <input ng-show="checkUrl===undefined" type="text" class="form-control" placeholder="insert name" name="destination_name" id="destination_name"
+          ng-model="destination[checkUrl].destination_name" required>
+        <input type="hidden" class="form-control" name="destination_id" id="destination_id"
+          ng-model="destination[checkUrl].destination_id" />
+      </div>
+
+      <div class="form-group">
+        <label for="destination_desc">Destination Description:</label>
+        <div ng-show="myForm.destination_desc.$invalid"></div>
+        <input type="text" class="form-control" placeholder="description" name="destination_desc" id="destination_desc"
+          ng-model="destination[checkUrl].destination_desc" required>
+      </div>
+
+      <div class="form-group">
+        <label for="destination_img">Upload Image:</label>
+        <div ng-show="myForm.destination_img.$invalid"></div>
+        <input type="text" class="form-control" placeholder="insert image" name="destination_img" id="destination_img"
+          ng-model="destination[checkUrl].destination_img" required>
+      </div>
+
+      <div class="form-group">
+        <label for="subcategory_title">Subcategory Title:</label>
+        <div ng-show="myForm.subcategory_title.$invalid"></div>
+        <select class="form-control" name="subcategory_title" id="subcategory_title" ng-model="destination[checkUrl].subcategory_title" required>
+          <option value=""></option>
+          <option ng-repeat="title in subcategory" value="{{title.subcategory_title}}">
+            {{title.subcategory_title}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="category_title">Category Title:</label>
+        <div ng-show="myForm.category_title.$invalid"></div>
+        <select class="form-control" name="category_title" id="category_title" ng-model="destination[checkUrl].category_title" required>
+          <option value=""></option>
+          <option ng-repeat="title in category" value="{{title.category_title}}">
+            {{title.category_title}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <button ng-show="checkUrl===undefined" class="btn btn-secondary"
+          ng-click="(myForm.destination_name.$valid && myForm.destination_desc.$valid && myForm.destination_img.$valid 
+          && myForm.subcategory_title.$valid && myForm.category_title.$valid) 
+          ? function_destination_form(destination[checkUrl].destination_name,destination[checkUrl].destination_desc,
+          destination[checkUrl].destination_img,destination[checkUrl].subcategory_title,destination[checkUrl].category_title,
+          destination[checkUrl].destination_id, 'insert') : function_error()">SAVE</button>
+      </div>
+
+      <div class="form-group">
+        <button ng-show="checkUrl!==undefined" class="btn btn-secondary"
+          ng-click="(myForm.destination_name.$valid && myForm.destination_desc.$valid && myForm.destination_img.$valid 
+                && myForm.subcategory_title.$valid && myForm.category_title.$valid) 
+                ? function_destination_form(destination[checkUrl].destination_name,destination[checkUrl].destination_desc,
+                destination[checkUrl].destination_img,destination[checkUrl].subcategory_title,destination[checkUrl].category_title,
+                destination[checkUrl].destination_id, 'update') : function_error()">UPDATE</button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

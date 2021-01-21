@@ -1,0 +1,59 @@
+<div class="container">
+  <h4 class="text-light display-4">Contact US</h4>
+  <div class="alert alert-success" ng-show="successAlert">
+    You send the message successfuly!
+  </div>
+  <div class="alert alert-danger" ng-show="dangerAlert">
+    Please fill in the form correctly!
+  </div>
+  <div class="alert alert-info" ng-show="infoAlert">
+    The record already exists!
+  </div>
+  <div class="container">
+
+    <form name="myForm" class="text-light form-myForm">
+
+      <div class="form-group">
+        <label for="first_name">First Name:</label>
+        <div ng-show="myForm.first_name.$invalid"></div>
+        <input type="text" class="form-control" placeholder="first name" name="first_name" id="first_name" ng-model="contact[checkUrl].first_name" required>
+        <input type="hidden" class="form-control" name="contact_id" id="contact_id" ng-model="contact[checkUrl].contact_id" />
+      </div>
+
+      <div class="form-group">
+        <label for="last_name">Last Name:</label>
+        <div ng-show="myForm.last_name.$invalid"></div>
+        <input type="text" class="form-control" placeholder="last name" name="last_name" id="last_name" ng-model="contact[checkUrl].last_name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <div ng-show="myForm.email.$invalid"></div>
+        <input type="text" class="form-control" placeholder="email" name="email" id="email"
+          ng-model="contact[checkUrl].email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number:</label>
+        <div ng-show="myForm.phone.$invalid"></div>
+        <input type="text" class="form-control" placeholder="phone number" name="phone" id="phone"
+          ng-model="contact[checkUrl].phone" required>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Your message:</label>
+        <div ng-show="myForm.message.$invalid"></div>
+        <textarea class="form-control" rows="5" name="message" id="message" ng-model="contact[checkUrl].message" maxlength="255" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <button ng-show="checkUrl===undefined" class="btn btn-secondary"
+          ng-click="(myForm.first_name.$valid && myForm.last_name.$valid && myForm.email.$valid && myForm.phone.$valid && myForm.message.$valid) 
+          ? function_contact_form(contact[checkUrl].first_name,contact[checkUrl].last_name,contact[checkUrl].email,contact[checkUrl].phone,contact[checkUrl].message,contact[checkUrl].contact_id) : function_error()">SEND</button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
